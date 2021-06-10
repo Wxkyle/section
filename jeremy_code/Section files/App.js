@@ -1,27 +1,11 @@
-
+import logo from './logo.svg';
 import './App.css';
 import Section from './Section';
 
 function App() {
-
-
-
-
-
-  return <div>
-    <Section right>
-
-    </Section>
-    <Section left>
-
-    </Section>
-    <Section bottom>
-
-    </Section>
-    <Section>
-
-    </Section>
-    <Section>
+  return (
+    <div className="App">
+      <Section>
         {"Details"}
         {"These are words that go here"}
       </Section>
@@ -43,10 +27,8 @@ function App() {
         {{first_name: undefined}}
         {{last_name: undefined}}
       </Section>
-
-  </div>
+    </div>
+  );
 }
-
-
 
 export default App;

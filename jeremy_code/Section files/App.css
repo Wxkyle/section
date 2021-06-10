@@ -1,7 +1,4 @@
-.left {
-}
-
-/* .App {
+.App {
   text-align: center;
 }
 
@@ -38,4 +35,9 @@
   to {
     transform: rotate(360deg);
   }
-} */
+}
+
+.section {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
