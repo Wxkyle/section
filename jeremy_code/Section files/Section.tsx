@@ -73,7 +73,7 @@ const headerAndTextPattern = createPattern(
   () => null,
 );
 
-const pictureAndLabelBelowPattern = createPattern(
+const pictureAndLabelPattern = createPattern(
   (children: any) => {
     let score = 100; //0-100
     let priority = 10; //1-10 (where 1 is higher)
@@ -90,6 +90,15 @@ const pictureAndLabelBelowPattern = createPattern(
     //   }
     // ]
 
+    if (!children[0].child.isImage) {
+      score = 0
+    } else if (typeof children[1].child !== 'string') { 
+      score = 0
+    }
+    if (!(children.child).endsWith('.png')){
+      score -= 50
+    }
+
     //Failure cases - we return a 0 score
     //!child[0].isImage
     //child[1] is not a string
@@ -101,28 +110,37 @@ const pictureAndLabelBelowPattern = createPattern(
   },
 );
 
-const pictureAndLabelAbovePattern = createPattern(
+const userFirstLastNamePattern = createPattern(
   (children: any) => {
     let score = 100; //0-100
     let priority = 10; //1-10 (where 1 is higher)
     // children: [
     //   {
     //       "type": "string",
-    //       "isImage": false
-    //       "child": "The picture description"
-    //   },
-    //   {
-    //       "type": "string",
     //       "isImage": true
     //       "child": "myFancyPic.png"
     //   },
+    //   {
+    //       "type": "string",
+    //       "isImage": false
+    //       "child": "The picture description"
+    //   }
     // ]
 
-    //Failure cases - we return a 0 score
-    //!child[1].isImage
-    //child[0] is not a string
+    if (!children[0].child.isImage) {
+      score = 0
+    } else if (typeof children[1].child !== 'string') { 
+      score = 0
+    }
+    if (!(children.child).endsWith('.png')){
+      score -= 50
+    }
+
+    //Failure cases 
 
     return { score, priority };
   },
-  () => null,
+  () => {
+    //Can we build a dynamic text sizing component using layoutEffects and refs?
+  },
 );

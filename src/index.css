@@ -17,11 +17,13 @@ code {
   height: 100px;
   width: 100px;
   display: flex;
+  min-width: 100px;
 }
 
 .justify-start {
   justify-content: flex-start;
 }
+
 .justify-end {
   justify-content: flex-end;
 }
@@ -42,10 +44,18 @@ code {
   align-items: center;
 }
 
+.align-stretch {
+  align-items: stretch;
+}
+
+.column {
+  flex-direction: column;
+}
+
 .square {
   min-height: 20px;
   min-width: 20px;
-  height: 20px;
-  width: 20px;
   background-color: green;
 }
+
+
