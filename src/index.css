@@ -14,9 +14,12 @@ code {
 
 .section {
   border: 1px solid #ccc;
+  display: flex;
+}
+
+.section-with-test-square {
   height: 100px;
   width: 100px;
-  display: flex;
   min-width: 100px;
 }
 
