@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+img {
+  max-width: 100%;
+}
+
 .section {
   border: 1px solid #ccc;
   display: flex;
@@ -60,5 +64,3 @@ code {
   min-width: 20px;
   background-color: green;
 }
-
-

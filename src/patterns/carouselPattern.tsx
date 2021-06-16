@@ -3,8 +3,8 @@ import { createPattern, registerPattern } from ".";
 import { useContext } from "react";
 import ReactMagicStylingContext from "../ReactMagicStylingContext";
 
-export const formPattern = createPattern(
-  "formPattern",
+export const carouselPattern = createPattern(
+  "carouselPattern",
   (children: any) => {
     let score = 100; //0-100
     let priority = 10; //1-10 (where 1 is higher)
@@ -25,19 +25,12 @@ export const formPattern = createPattern(
     //       "child": "{last_name: undefined}"
     //   }
     // ]
-    const isForm = children.some(
-      (child: any) =>
-        child.type === "object" &&
-        Object.values(child.node).some((val) => val === undefined)
-    );
 
-    if (!isForm) {
+    if (!children.isArray) {
       return { score: 0, priority };
-    } else if (
-      children[0].node.startsWith(".") ||
-      children[0].type !== "string"
-    ) {
-      return { score: 0, priority };
+    }
+    if (children[0].node.startsWith("[")) {
+      return { score: 100, priority };
     }
 
     //Failure cases
@@ -50,6 +43,8 @@ export const formPattern = createPattern(
     return (
       <div
         style={{
+          height: "30%",
+          width: "30%",
           display: "flex",
           paddingLeft: styleValues.spacing.base * 3,
           paddingRight: styleValues.spacing.base * 3,
@@ -60,12 +55,7 @@ export const formPattern = createPattern(
       >
         {children.map((child) => (
           <input
-            style={{
-              paddingLeft: styleValues.spacing.base * 3,
-              paddingRight: styleValues.spacing.base * 3,
-              paddingTop: styleValues.spacing.base * 3,
-              paddingBottom: styleValues.spacing.base * 3,
-            }}
+            style={{}}
             placeholder={
               child.type === "string" ? child.node : Object.keys(child.node)[0]
             }
@@ -76,4 +66,4 @@ export const formPattern = createPattern(
   }
 );
 
-registerPattern(formPattern);
+registerPattern(carouselPattern);

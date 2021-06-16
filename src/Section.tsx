@@ -2,13 +2,16 @@ import "./App.css";
 import React, { FunctionComponent, ReactNode } from "react";
 import { useAnchorPositions } from "./useAnchorPositions";
 import { patterns } from "./patterns";
-console.log("patterns", patterns)
-
+import { useContext } from "react";
+import ReactMagicStylingContext from "./ReactMagicStylingContext";
 
 export interface ISectionProps {}
 
 function Section(props: any) {
-  const { left, right, center, top, bottom, testSquare } = props;
+  const { left, right, center, top, bottom, testSquare, separatorGray } = props;
+
+  const styleValues = useContext(ReactMagicStylingContext);
+  console.log("stylevalues", styleValues);
 
   console.log("PROPS", { left, right, center, top, bottom });
   /*
@@ -34,6 +37,7 @@ function Section(props: any) {
     ? props.children?.map?.((child: ReactNode) => {
         return {
           type: typeof child,
+          isArray: Array.isArray(child),
           isImage:
             typeof child === "string" &&
             (child.endsWith(".png") ||
@@ -61,7 +65,7 @@ function Section(props: any) {
   }
 
   positionsArr.push(positionStr);
-
+  // style = { paddingLeft = styleValues.spacing.base * 6 };
   return (
     <div>
       <div className={positionsArr.join(" ")}>
@@ -85,6 +89,9 @@ function Section(props: any) {
               })
           : null}
       </div>
+      {separatorGray ? (
+        <div style={{ borderBottom: `2px solid ${separatorGray}` }}></div>
+      ) : null}
     </div>
   );
 }

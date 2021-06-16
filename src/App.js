@@ -5,20 +5,44 @@ import "./patterns";
 import "./patterns/dataFromDBPattern";
 import "./patterns/formPattern";
 import "./patterns/headerAndTextPattern";
-import "./patterns/pictureAndLabelPattern";
-import Section from './Section.tsx';
+import "./patterns/picturePattern";
+import Section from './Section';
+import ReactMagicStylingContext from "./ReactMagicStylingContext";
 
 function App() {
-  return <div>
+  return <ReactMagicStylingContext.Provider 
+        value={{ colors: { 
+          primary: "blue", secondary: "red", separatorGray: '#bbb' },
+          spacing: { base: 2 } 
+        }}                                      
+        >
+          <div>
     {/* <TestSquareSections/> */}
     <div style={{height: '100px'}}/>
     <Section>
-        {"Details"}
-        {"These are words that go here"}
+        {/*This would give us a carousel because [] = sideways*/}
+        {"Words on paper."}
+        {"Words on paper."}
       </Section>
       <Section>
-        {"myFancyPic.png"}
-        {"The picture description"}
+        {/*This would give us a carousel because [] = sideways*/}
+        {["/images/unsplash1.jpg",
+        "/images/unsplash1.jpg",
+        "/images/unsplash1.jpg",
+        "/images/unsplash1.jpg",
+        "/images/unsplash1.jpg"]}
+      </Section>
+      <Section>
+        {/*This would give us a list of photos because it's not in an array*/}
+        {"/images/unsplash1.jpg"}
+        {"/images/unsplash1.jpg"}
+        {"/images/unsplash1.jpg"}
+
+      </Section>
+    <Section>
+        {"LaPierre Mountain Bike"}
+        {"Orem, UT"}
+        {"* 5.0 (3)"}
       </Section>
       <Section>
         {"The picture description"}
@@ -35,7 +59,7 @@ function App() {
         {{first_name: undefined}}
         {{last_name: undefined}}
       </Section>
-  </div>
+  </div></ReactMagicStylingContext.Provider>
 }
 
 
